@@ -86,6 +86,7 @@ fun KontakLayout(kontak: List<Kontak>, modifier: Modifier = Modifier){
 @Composable
 fun KontakCard(
     kontak: Kontak,
+    onDeleteClick: (Kontak) -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     Card(
