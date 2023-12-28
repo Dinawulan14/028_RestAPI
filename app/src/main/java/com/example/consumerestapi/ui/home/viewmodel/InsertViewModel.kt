@@ -28,6 +28,10 @@ class InsertViewModel(private val kontakRepository: KontakRepository) : ViewMode
     }
 }
 
+data class InsertUiState(
+    val insertUiEvent: InsertUiEvent = InsertUiEvent(),
+)
+
 data class InsertUiEvent(
     val id: Int = 0,
     val nama: String = "",
@@ -35,22 +39,19 @@ data class InsertUiEvent(
     val nohp: String = ""
 )
 
-data class InsertUiState(
-    val insertUiEvent: InsertUiEvent = InsertUiEvent()
-)
-
 fun InsertUiEvent.toKontak() : Kontak = Kontak(
     id = id,
     nama = nama,
     alamat = alamat,
-    nohp = nohp
+    nohp = nohp,
+)
+
+fun Kontak.toUiStateKontak(): InsertUiState = InsertUiState(
+    insertUiEvent = toInsertUiEvent()
 )
 fun Kontak.toInsertUiEvent() : InsertUiEvent = InsertUiEvent(
     id = id,
     nama = nama,
     alamat = alamat,
-    nohp = nohp
-)
-fun Kontak.toUiStateKontak(): InsertUiState = InsertUiState(
-    insertUiEvent = toInsertUiEvent()
+    nohp = nohp,
 )
